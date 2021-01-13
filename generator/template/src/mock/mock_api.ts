@@ -1,4 +1,4 @@
-import Mock from 'mockjs';
+import Mock from './index';
 import {
   getByCode, login, getStudentList, delteStudent,
   getUserList,
@@ -11,14 +11,40 @@ import {
   getClassList, editClass, delClass, insertStudent,
 } from './modules/classe';
 import { changeUserSignatures, changePasswords } from './modules/public/userInfo';
-import MockPath from './mock_api';
+
+export default class MockPath {
+    login = './mock/user/login';
+
+    getByCode = './mock/user/getByCode';
+
+    getClassList = './mock/class/queryClass'
+
+    editClass = './mock/class/createOrUpdateClass'
+
+    delClass = './mock/userManage/delClass'
+
+    insertStudent = './mock/classMember/insertStudent'
+
+    getUserList = './mock/user/queryUserList'
+
+    getStudentList = './mock/classMember/listStudent'
+
+    resetPassword = './mock/user/adminResetPassword'
+
+    delteTeacher = './mock/userManage/delTeacher'
+
+    delteStudent = './mock/userManage/delStudent'
+
+    changeUserName = './mock/user/changeUserInfo'
+
+    createUser = './mock/classMember/createClassMember'
+
+    changeUserSignatures = './mock/user/changeUserSignature'
+
+    changePasswords = './mock/user/changePassword'
+}
 
 const mockPath = new MockPath();
-
-console.log('mock');
-Mock.setup({
-  timeout: '10-1500',
-});
 // 登录模块
 Mock.mock(mockPath.login, 'post', login);
 Mock.mock(mockPath.getByCode, 'post', getByCode);
@@ -47,5 +73,3 @@ Mock.mock(mockPath.createUser, 'post', createUser);
 Mock.mock(mockPath.changeUserSignatures, 'post', changeUserSignatures);
 // 修改密码
 Mock.mock(mockPath.changePasswords, 'post', changePasswords);
-
-export default Mock;

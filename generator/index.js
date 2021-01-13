@@ -26,41 +26,4 @@ module.exports = (api, options) => {
 
         }
     })
-    // 基础 vue.config.js 参数设置
-    api.extendPackage({
-        vue: {
-            lintOnSave: false,
-            // baseUrl Deprecated since Vue CLI 3.3, 使用 publicPath 替代
-            publicPath: `/${options.productName}`,
-            devServer: {
-                proxy: {
-                  '/': {
-                    target: options.serverPath,
-                    changeOrigin: true,
-                    ws: false,
-                  },
-                },
-              },
-            pluginOptions: {
-                toTypes: {
-                    host: `${options.serverPath}/${options.productName}/v2/api-docs`,
-                    TypesPath: './types/api.ts',
-                },
-                ftp: {
-                    host: '自行配置',
-                    // 须自行配置路径
-                    remoteFtpPath: 'DISK-D/findsoft_test/tomcat8/webapps/eg/',
-                },
-            },
-            css: {
-                loaderOptions: {
-                    less: {
-                        lessOptions: {
-                            javascriptEnabled: true,
-                        },
-                    },
-                },
-            },
-        },
-    })
 }
